@@ -163,9 +163,6 @@ def add_telegram_bot(
 def show_api_tokens():
     for key,item in api_credentials.items():
         typer.echo(f"{key}: {item}")
-@app.command()
-def pwd():
-    typer.echo(os.getcwd())
 
 def main():
     global queries,api_credentials

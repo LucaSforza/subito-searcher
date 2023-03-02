@@ -2,18 +2,19 @@
 import pickle
 import json
 from typing import Union
+import os
 
 # third party
 from subitokit import subito_query,load_query
 
-DB_FILE = "searches.tracked"
-TELEGRAM_API_FILE = "telegram.credentials"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_FILE = BASE_DIR+"/searches.tracked"
+TELEGRAM_API_FILE = BASE_DIR+"/telegram.credentials"
 
 def save_queries(queries: list[subito_query]) -> None:
     queries_dict = list(map(lambda x:x.to_json(),queries))
     with open(DB_FILE,'wb') as file:
         pickle.dump(queries_dict,file)
-        
 
 def load_queries() -> list[subito_query]:
     try:
